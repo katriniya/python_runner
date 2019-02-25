@@ -20,7 +20,7 @@ class Game:
         go_font = pygame.font.SysFont('Comic Sans MS', 30)
         self.score = go_font.render('Score: ' + str(score), True, pygame.Color(255, 255, 255))
         self.screen.fill((43, 43, 43))
-        self.screen.blit(self.score, (30, 20))
+        self.screen.blit(self.score, (game.widht - 200,  20))
 
         player.drawPlayer(game.screen)
         objlist[0].drawObject(game.screen)
@@ -90,8 +90,9 @@ if __name__ == '__main__':
             elif event.type == pygame.KEYDOWN:
 
                 if event.key == pygame.K_UP:
-                    player.jumpPlayer()
-                    break
+                    if player.player_y == game.height-10:
+                        player.jumpPlayer()
+                        break
 
                 elif event.key == pygame.K_r:
                     game_over = False
