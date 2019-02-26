@@ -5,7 +5,7 @@ class Game:
         self.widht = 500
         self.height = 200
         self.screen = pygame.display.set_mode((self.widht, self.height))
-        pygame.display.set_caption('SNAKE')
+        pygame.display.set_caption('RUNNER')
         pygame.font.init()
         go_font = pygame.font.SysFont('Comic Sans MS', 30)
         self.go_surf = go_font.render('Game over', True, pygame.Color(255, 255, 255))
@@ -64,7 +64,6 @@ class Object:
         self.deleteObject()
 
     def deleteObject(self):
-        print('del')
         if self.object_x < 0:
             objlist.pop(0)
 
@@ -89,12 +88,12 @@ if __name__ == '__main__':
 
             elif event.type == pygame.KEYDOWN:
 
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_UP or event.key == pygame.K_SPACE :
                     if player.player_y == game.height-10:
                         player.jumpPlayer()
                         break
 
-                elif event.key == pygame.K_r:
+                elif event.key == pygame.K_r and game_over:
                     game_over = False
                     score = 0
                     objlist[0].__init__()
